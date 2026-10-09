@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 600" width="960" height="600">
+<title>Two girls playing chess, with the Queer Gambit timer next to the board</title>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff4f8"/><stop offset="1" stop-color="#fbdce9"/></linearGradient>
+  <linearGradient id="cool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#008026"/><stop offset=".5" stop-color="#004dff"/><stop offset="1" stop-color="#750787"/></linearGradient>
+</defs>
+<rect width="960" height="600" fill="url(#bg)"/>
+
+<!-- A little rainbow, hearts and sparkles in the air -->
+<path d="M414 150 A66 66 0 0 1 546 150" stroke="#e40303" stroke-width="7.5" fill="none"/><path d="M421 150 A59 59 0 0 1 539 150" stroke="#ff8c00" stroke-width="7.5" fill="none"/><path d="M428 150 A52 52 0 0 1 532 150" stroke="#ffed00" stroke-width="7.5" fill="none"/><path d="M435 150 A45 45 0 0 1 525 150" stroke="#008026" stroke-width="7.5" fill="none"/><path d="M442 150 A38 38 0 0 1 518 150" stroke="#004dff" stroke-width="7.5" fill="none"/><path d="M449 150 A31 31 0 0 1 511 150" stroke="#750787" stroke-width="7.5" fill="none"/>
+<path transform="translate(370 95) scale(1.6)" fill="#f07bb0" opacity="1" d="M0 9s-7.5-4.6-9.6-9.2C-11.1-3.6-9-7.5-5.2-7.5c2.2 0 3.7 1.2 5.2 3 1.5-1.8 3-3 5.2-3 3.8 0 5.9 3.9 4.4 7.3C7.5 4.4 0 9 0 9z"/><path transform="translate(598 80) scale(1.2)" fill="#e8559a" opacity="0.8" d="M0 9s-7.5-4.6-9.6-9.2C-11.1-3.6-9-7.5-5.2-7.5c2.2 0 3.7 1.2 5.2 3 1.5-1.8 3-3 5.2-3 3.8 0 5.9 3.9 4.4 7.3C7.5 4.4 0 9 0 9z"/><path transform="translate(420 205) scale(0.9)" fill="#f4a3c8" opacity="1" d="M0 9s-7.5-4.6-9.6-9.2C-11.1-3.6-9-7.5-5.2-7.5c2.2 0 3.7 1.2 5.2 3 1.5-1.8 3-3 5.2-3 3.8 0 5.9 3.9 4.4 7.3C7.5 4.4 0 9 0 9z"/><path transform="translate(545 215) scale(1.1)" fill="#f07bb0" opacity="0.7" d="M0 9s-7.5-4.6-9.6-9.2C-11.1-3.6-9-7.5-5.2-7.5c2.2 0 3.7 1.2 5.2 3 1.5-1.8 3-3 5.2-3 3.8 0 5.9 3.9 4.4 7.3C7.5 4.4 0 9 0 9z"/>
+<path transform="translate(330 165) scale(1.1)" fill="#ffd34d" d="M0 -10 C1.5 -2 2 -1.5 10 0 C2 1.5 1.5 2 0 10 C-1.5 2 -2 1.5 -10 0 C-2 -1.5 -1.5 -2 0 -10Z"/><path transform="translate(640 150) scale(1.4)" fill="#fff" d="M0 -10 C1.5 -2 2 -1.5 10 0 C2 1.5 1.5 2 0 10 C-1.5 2 -2 1.5 -10 0 C-2 -1.5 -1.5 -2 0 -10Z"/><path transform="translate(600 250) scale(0.8)" fill="#ffd34d" d="M0 -10 C1.5 -2 2 -1.5 10 0 C2 1.5 1.5 2 0 10 C-1.5 2 -2 1.5 -10 0 C-2 -1.5 -1.5 -2 0 -10Z"/><path transform="translate(360 260) scale(0.9)" fill="#fff" d="M0 -10 C1.5 -2 2 -1.5 10 0 C2 1.5 1.5 2 0 10 C-1.5 2 -2 1.5 -10 0 C-2 -1.5 -1.5 -2 0 -10Z"/>
+
+<!-- Girl on the left: long, almost black wavy hair, black jumper with a little infinity necklace -->
+<path d="M86 255C86 156 272 156 272 255c10 20-10 36 0 54s-10 36 0 54-10 36 0 54-10 30 6 44q-12 10-26 2-10 8-24 0H92q-14 8-24-2c-10-14 10-30 0-48s10-34 0-50 10-34 0-50 10-34 18-55Z" fill="#231a1c"/>
+<path d="M98 296q10 14 0 28t0 28 0 28 0 28 0 28M260 296q-10 14 0 28t0 28 0 28 0 28 0 28" stroke="#4a3a3e" stroke-width="3" stroke-linecap="round" fill="none"/>
+<path d="M92 480C92 392 128 352 170 352s78 40 78 128Z" fill="#3d3842"/>
+<path d="M156 356q16 24 32 0" stroke="#e2bd62" stroke-width="2" fill="none"/>
+<path d="M164 378c2.5-5 8-5 8 0s5.5 5 8 0-5.5-5-8 0-5.5 5-8 0Z" stroke="#e2bd62" stroke-width="2" fill="none"/>
+<circle cx="176" cy="262" r="70" fill="#ffe3d6"/>
+<path d="M104 250C102 190 142 168 178 170c44 2 76 30 74 80-10-22-30-32-48-28-12-14-42-17-60 0-14-7-32 6-40 28Z" fill="#231a1c"/>
+<path d="M150 186q22-10 44-6" stroke="#4a3a3e" stroke-width="5" stroke-linecap="round" fill="none" opacity=".8"/>
+<ellipse cx="164" cy="268" rx="7.5" ry="9.5" fill="#2a1a25"/><ellipse cx="208" cy="268" rx="7.5" ry="9.5" fill="#2a1a25"/>
+<circle cx="167" cy="264" r="2.8" fill="#fff"/><circle cx="211" cy="264" r="2.8" fill="#fff"/>
+<ellipse cx="154" cy="290" rx="11" ry="6.5" fill="#ff9ec4" opacity=".75"/><ellipse cx="220" cy="290" rx="11" ry="6.5" fill="#ff9ec4" opacity=".75"/>
+<path d="M176 291q10 13 20 0Z" fill="#c2416f"/>
+
+<!-- Girl on the right: long blonde hair with a bow, lilac jumper -->
+<path d="M694 255C694 156 880 156 880 255l10 205q-12 10-26 2-10 8-24 0H700q-14 8-24-2Z" fill="#efc76a"/>
+<path d="M704 300q-4 70 4 150M872 300q6 70 2 150" stroke="#d8a94a" stroke-width="3" stroke-linecap="round" fill="none"/>
+<path d="M712 480C712 392 748 352 790 352s78 40 78 128Z" fill="#b8a3ea"/>
+<circle cx="784" cy="262" r="70" fill="#ffe3d6"/>
+<path d="M712 250C710 190 750 168 786 170c44 2 76 30 74 80-10-22-30-32-48-28-12-14-42-17-60 0-14-7-32 6-40 28Z" fill="#efc76a"/>
+<path d="M760 186q22-10 44-6" stroke="#fff3c8" stroke-width="5" stroke-linecap="round" fill="none" opacity=".8"/>
+<g transform="translate(846 186) rotate(28)" fill="#f07bb0"><ellipse cx="-15" rx="15" ry="10"/><ellipse cx="15" rx="15" ry="10"/><circle r="7" fill="#e8559a"/></g>
+<ellipse cx="752" cy="268" rx="7.5" ry="9.5" fill="#2a1a25"/><ellipse cx="796" cy="268" rx="7.5" ry="9.5" fill="#2a1a25"/>
+<circle cx="755" cy="264" r="2.8" fill="#fff"/><circle cx="799" cy="264" r="2.8" fill="#fff"/>
+<ellipse cx="740" cy="290" rx="11" ry="6.5" fill="#ff9ec4" opacity=".75"/><ellipse cx="806" cy="290" rx="11" ry="6.5" fill="#ff9ec4" opacity=".75"/>
+<path d="M764 291q10 13 20 0Z" fill="#c2416f"/>
+
+<!-- Table -->
+<path d="M30 420H930l28 180H2Z" fill="#f6cfe0"/>
+<path d="M30 420H930" stroke="#eab0c9" stroke-width="6" stroke-linecap="round"/>
+
+<!-- A pink chessboard with a few pieces -->
+<path d="M326 520H634v12H326Z" fill="#c9608f"/>
+<path d="M348 418H612L634 520H326Z" fill="#fff1f6"/>
+<path d="M381.0 418.0L414.0 418.0L412.6 430.8L378.9 430.8ZM447.0 418.0L480.0 418.0L480.0 430.8L446.3 430.8ZM513.0 418.0L546.0 418.0L547.4 430.8L513.7 430.8ZM579.0 418.0L612.0 418.0L614.8 430.8L581.1 430.8ZM345.2 430.8L378.9 430.8L376.9 443.5L342.5 443.5ZM412.6 430.8L446.3 430.8L445.6 443.5L411.2 443.5ZM480.0 430.8L513.7 430.8L514.4 443.5L480.0 443.5ZM547.4 430.8L581.1 430.8L583.1 443.5L548.8 443.5ZM376.9 443.5L411.2 443.5L409.9 456.2L374.8 456.2ZM445.6 443.5L480.0 443.5L480.0 456.2L444.9 456.2ZM514.4 443.5L548.8 443.5L550.1 456.2L515.1 456.2ZM583.1 443.5L617.5 443.5L620.2 456.2L585.2 456.2ZM339.8 456.2L374.8 456.2L372.8 469.0L337.0 469.0ZM409.9 456.2L444.9 456.2L444.2 469.0L408.5 469.0ZM480.0 456.2L515.1 456.2L515.8 469.0L480.0 469.0ZM550.1 456.2L585.2 456.2L587.2 469.0L551.5 469.0ZM372.8 469.0L408.5 469.0L407.1 481.8L370.7 481.8ZM444.2 469.0L480.0 469.0L480.0 481.8L443.6 481.8ZM515.8 469.0L551.5 469.0L552.9 481.8L516.4 481.8ZM587.2 469.0L623.0 469.0L625.8 481.8L589.3 481.8ZM334.2 481.8L370.7 481.8L368.6 494.5L331.5 494.5ZM407.1 481.8L443.6 481.8L442.9 494.5L405.8 494.5ZM480.0 481.8L516.4 481.8L517.1 494.5L480.0 494.5ZM552.9 481.8L589.3 481.8L591.4 494.5L554.2 494.5ZM368.6 494.5L405.8 494.5L404.4 507.2L366.6 507.2ZM442.9 494.5L480.0 494.5L480.0 507.2L442.2 507.2ZM517.1 494.5L554.2 494.5L555.6 507.2L517.8 507.2ZM591.4 494.5L628.5 494.5L631.2 507.2L593.4 507.2ZM328.8 507.2L366.6 507.2L364.5 520.0L326.0 520.0ZM404.4 507.2L442.2 507.2L441.5 520.0L403.0 520.0ZM480.0 507.2L517.8 507.2L518.5 520.0L480.0 520.0ZM555.6 507.2L593.4 507.2L595.5 520.0L557.0 520.0Z" fill="#f08cb7"/>
+<g transform="translate(394.5 439.9) scale(1.11)" fill="#2b2328" stroke="#f07bb0" stroke-opacity=".6" stroke-width="1.2"><ellipse rx="9" ry="3.5"/><path d="M-6 0C-5-6-3-9-3-12H3C3-9 5-6 6 0Z"/><circle cy="-15" r="4.6"/></g><g transform="translate(565.5 439.9) scale(1.11)" fill="#fffafc" stroke="#b98aa0" stroke-width="1.2"><ellipse rx="9" ry="3.5"/><path d="M-6 0C-5-6-3-9-3-12H3C3-9 5-6 6 0Z"/><circle cy="-15" r="4.6"/></g><g transform="translate(497.4 452.7) scale(1.17)" fill="#fffafc" stroke="#b98aa0" stroke-width="1.2"><ellipse rx="9" ry="3.5"/><path d="M-6 0C-5-6-3-9-3-12H3C3-9 5-6 6 0Z"/><circle cy="-15" r="4.6"/></g><g transform="translate(355.5 465.4) scale(1.23)" fill="#2b2328" stroke="#f07bb0" stroke-opacity=".6" stroke-width="1.2"><ellipse rx="9.5" ry="3.6"/><path d="M-6.5 0C-5-7-3.5-11-4-15H4C3.5-11 5-7 6.5 0Z"/><path d="M-6-14L-8-23-3.5-17.5 0-25 3.5-17.5 8-23 6-14Z"/></g><g transform="translate(462.2 465.4) scale(1.23)" fill="#2b2328" stroke="#f07bb0" stroke-opacity=".6" stroke-width="1.2"><ellipse rx="9" ry="3.5"/><path d="M-6 0C-5-6-3-9-3-12H3C3-9 5-6 6 0Z"/><circle cy="-15" r="4.6"/></g><g transform="translate(568.9 465.4) scale(1.23)" fill="#fffafc" stroke="#b98aa0" stroke-width="1.2"><ellipse rx="9" ry="3.5"/><path d="M-6 0C-5-6-3-9-3-12H3C3-9 5-6 6 0Z"/><circle cy="-15" r="4.6"/></g><g transform="translate(389.4 478.2) scale(1.28)" fill="#2b2328" stroke="#f07bb0" stroke-opacity=".6" stroke-width="1.2"><ellipse rx="9" ry="3.5"/><path d="M-6 0C-5-6-3-9-3-12H3C3-9 5-6 6 0Z"/><circle cy="-15" r="4.6"/></g><g transform="translate(606.9 478.2) scale(1.28)" fill="#fffafc" stroke="#b98aa0" stroke-width="1.2"><ellipse rx="9.5" ry="3.6"/><path d="M-6.5 0C-5-7-3.5-11-4-15H4C3.5-11 5-7 6.5 0Z"/><path d="M-6-14L-8-23-3.5-17.5 0-25 3.5-17.5 8-23 6-14Z"/></g><g transform="translate(424.6 490.9) scale(1.34)" fill="#2b2328" stroke="#f07bb0" stroke-opacity=".6" stroke-width="1.2"><ellipse rx="9" ry="3.5"/><path d="M-6 0C-5-6-3-9-3-12H3C3-9 5-6 6 0Z"/><circle cy="-15" r="4.6"/></g><g transform="translate(535.4 490.9) scale(1.34)" fill="#fffafc" stroke="#b98aa0" stroke-width="1.2"><ellipse rx="9" ry="3.5"/><path d="M-6 0C-5-6-3-9-3-12H3C3-9 5-6 6 0Z"/><circle cy="-15" r="4.6"/></g><g transform="translate(385.9 503.7) scale(1.40)" fill="#2b2328" stroke="#f07bb0" stroke-opacity=".6" stroke-width="1.2"><ellipse rx="9" ry="3.5"/><path d="M-6 0C-5-6-3-9-3-12H3C3-9 5-6 6 0Z"/><circle cy="-15" r="4.6"/></g><g transform="translate(574.0 503.7) scale(1.40)" fill="#fffafc" stroke="#b98aa0" stroke-width="1.2"><ellipse rx="9" ry="3.5"/><path d="M-6 0C-5-6-3-9-3-12H3C3-9 5-6 6 0Z"/><circle cy="-15" r="4.6"/></g>
+
+<!-- The timer, in the Pride theme: Black's clock (left) is running -->
+<rect x="387" y="536" width="186" height="58" rx="11" fill="#2d2730"/>
+<rect x="392" y="540" width="176" height="50" rx="7" fill="#1c1418"/>
+<path d="M480 540H561a7 7 0 0 1 7 7v36a7 7 0 0 1-7 7H480Z" fill="#fbf2f1"/>
+<rect x="392" y="540" width="9" height="50" rx="4" fill="url(#cool)"/>
+<path d="M474 544 q5 5 0 10.5 t0 10.5 t0 10.5 t0 10.5" stroke="#e40303" stroke-width="3.4" fill="none"/><path d="M477 544 q5 5 0 10.5 t0 10.5 t0 10.5 t0 10.5" stroke="#ff8c00" stroke-width="3.4" fill="none"/><path d="M480 544 q5 5 0 10.5 t0 10.5 t0 10.5 t0 10.5" stroke="#ffed00" stroke-width="3.4" fill="none"/><path d="M483 544 q5 5 0 10.5 t0 10.5 t0 10.5 t0 10.5" stroke="#008026" stroke-width="3.4" fill="none"/><path d="M486 544 q5 5 0 10.5 t0 10.5 t0 10.5 t0 10.5" stroke="#004dff" stroke-width="3.4" fill="none"/><path d="M489 544 q5 5 0 10.5 t0 10.5 t0 10.5 t0 10.5" stroke="#750787" stroke-width="3.4" fill="none"/>
+<text x="0" y="0" transform="translate(446 565.0) rotate(90)" text-anchor="middle" dominant-baseline="central" font-family="Nunito, Segoe UI, sans-serif" font-weight="800" font-size="15" fill="#fbf2f1">12:48</text>
+<text x="0" y="0" transform="translate(526 565.0) rotate(-90)" text-anchor="middle" dominant-baseline="central" font-family="Nunito, Segoe UI, sans-serif" font-weight="800" font-size="15" fill="#1c1418" opacity=".35">14:05</text>
+
+<!-- Arms: she taps her half after her move; her friend gets a white pawn ready -->
+<path d="M228 392Q300 470 392 548" stroke="#3d3842" stroke-width="36" stroke-linecap="round" fill="none"/>
+<circle cx="401" cy="556" r="15" fill="#ffe3d6"/>
+<path d="M732 392Q700 460 668 496" stroke="#b8a3ea" stroke-width="36" stroke-linecap="round" fill="none"/>
+<circle cx="660" cy="502" r="16" fill="#ffe3d6"/>
+<g transform="translate(646 500) scale(1.1)" fill="#fffafc" stroke="#b98aa0" stroke-width="1.2"><ellipse rx="9" ry="3.5"/><path d="M-6 0C-5-6-3-9-3-12H3C3-9 5-6 6 0Z"/><circle cy="-15" r="4.6"/></g>
+<path transform="translate(418 535) scale(0.7)" fill="#ffd34d" d="M0 -10 C1.5 -2 2 -1.5 10 0 C2 1.5 1.5 2 0 10 C-1.5 2 -2 1.5 -10 0 C-2 -1.5 -1.5 -2 0 -10Z"/>
+</svg>
