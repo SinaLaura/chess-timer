@@ -10,12 +10,16 @@ A chess clock for your phone, lying next to the board.
 
 **Open it: https://sinalaura.github.io/chess-timer**
 
-## Use it as an app
+## Two ways to use it
 
-Add it to your phone's home screen and it opens like an app: full screen, with its own icon. Once it's open, it needs no internet.
+**1. In the browser:** open the link above on your phone. Nothing to install. When a game starts, it goes full screen (on Android).
 
-- **Android (Chrome):** tap the menu **⋮** at the top right, then **Add to home screen** (or **Install app**), then **Install**.
+**2. As an app:** add it to your phone's home screen. Then it has its own icon, opens like an app, and works without internet once it's been opened.
+
+- **Android:** open the browser's menu **⋮**, then tap **Install app**, **Add to home screen** or **Install and create shortcut**, whichever your browser offers.
 - **iPhone (Safari):** tap the share button, then **Add to Home Screen**.
+
+Both are the same clock, and changes reach both by themselves.
 
 ## How to use
 
@@ -24,7 +28,7 @@ Add it to your phone's home screen and it opens like an app: full screen, with i
 - Between games, tap the box in the middle to change the time setting.
 - Leaving the app during a game pauses the clock.
 
-<p><img src="images/stats.png" alt="The statistics while paused" width="220">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/settings.png" alt="The time settings" width="220"></p>
+<p><img src="images/stats.png" alt="The statistics while paused, with resume, end game and adjust time in the middle" width="170">&nbsp;&nbsp;&nbsp;<img src="images/chart.png" alt="A tap shows the time per move as a chart" width="170">&nbsp;&nbsp;&nbsp;<img src="images/adjust.png" alt="Adjusting each player's time" width="170">&nbsp;&nbsp;&nbsp;<img src="images/settings.png" alt="The time settings" width="170"></p>
 
 ## Time settings
 
