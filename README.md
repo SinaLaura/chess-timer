@@ -19,9 +19,10 @@ Add it to your phone's home screen and it opens like an app: full screen, with i
 
 ## How to use
 
-- Tap the screen to start White's clock. After your move, tap your own half.
-- During a game, tap the box in the middle to pause and see the statistics, with a chart of the time per move.
-- Between games, tap it to change the time setting.
+- Tap the screen or the play button **▶** in the middle to start White's clock. After your move, tap your own half.
+- During a game, tap the pause button or the box in the middle to pause and see the statistics. Tap a half to see a chart of the time per move. When paused, three buttons slide out: **▶** continues the game, the power button ends it (it asks first), and the stopwatch lets you add or take away time for each player.
+- Between games, tap the box in the middle to change the time setting.
+- Leaving the app during a game pauses the clock.
 
 <p><img src="images/stats.png" alt="The statistics while paused" width="220">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/settings.png" alt="The time settings" width="220"></p>
 

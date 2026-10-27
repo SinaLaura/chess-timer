@@ -3,9 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#f8cfe0">
+<meta name="theme-color" content="#fbf2f1">
 <meta name="color-scheme" content="only light">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<!-- iPhone app: the page reaches under the status bar, so it shows the top half's colour instead of white -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Queer Gambit">
 <link rel="manifest" href="manifest.webmanifest">
@@ -37,18 +39,20 @@
     --glow: 1;
     --run-white: var(--run);
     --run-black: var(--run);
+    /* The phone's status bar above the screen takes this colour while White's turn bar is up there. */
+    --edge-white: var(--run);
     --flag-pride: linear-gradient(to right, #e40303, #ff8c00, #ffed00, #008026, #004dff, #750787);
-    /* Trans: the actual flag, in stripes from top to bottom (with soft edges) */
-    --flag-trans: linear-gradient(#5bcefa 18%, #f5a9b8 22% 38%, #fff 42% 58%, #f5a9b8 62% 78%, #5bcefa 82%);
+    /* Trans: the actual flag, in sharp stripes from top to bottom */
+    --flag-trans: linear-gradient(#5bcefa 20%, #f5a9b8 0 40%, #fff 0 60%, #f5a9b8 0 80%, #5bcefa 0);
     --flag-wlw: linear-gradient(#d52d00 18%, #ff9a56 22% 38%, #fff 42% 58%, #d362a4 62% 78%, #a30262 82%); /* the actual flag, like trans */
   }
   :root[data-theme] { --stripes: var(--flag); --glow: .55; }
   /* White's half is turned around, so its gradients run "to left" to look the same on the screen. */
   :root[data-theme=pride] {
+    --play: #008026; --tools: #750787; /* ▶ and ❚❚: the flag's green; End and Adjust time: its purple */
     --flag: var(--flag-pride);
     --glow: 0; /* the waves are the border */
-    --run-white: linear-gradient(to left, #e40303, #ff8c00, #ffed00);
-    --run-black: linear-gradient(to right, #008026, #004dff, #750787);
+    --edge-white: initial; /* no turn bars, the hearts are enough: the status bar keeps White's colour */
   }
   /* Pride: the middle bar is a rainbow ribbon that waves: every wave up is a rainbow,
      every wave down one upside down. Around it, each half's own colour. */
@@ -72,25 +76,28 @@
     background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='84' height='61' fill='none' stroke-width='7.5'><path stroke='%23e40303' d='M-97.12 18.92A45.50 45.50 0 0 1 -28.88 18.92A10.50 10.50 0 0 0 -13.12 18.92A45.50 45.50 0 0 1 55.12 18.92A10.50 10.50 0 0 0 70.88 18.92A45.50 45.50 0 0 1 139.12 18.92A10.50 10.50 0 0 0 154.88 18.92A45.50 45.50 0 0 1 223.12 18.92A10.50 10.50 0 0 0 238.88 18.92'/><path stroke='%23ff8c00' d='M-91.88 23.55A38.50 38.50 0 0 1 -34.12 23.55A17.50 17.50 0 0 0 -7.88 23.55A38.50 38.50 0 0 1 49.88 23.55A17.50 17.50 0 0 0 76.12 23.55A38.50 38.50 0 0 1 133.88 23.55A17.50 17.50 0 0 0 160.12 23.55A38.50 38.50 0 0 1 217.88 23.55A17.50 17.50 0 0 0 244.12 23.55'/><path stroke='%23ffed00' d='M-86.62 28.18A31.50 31.50 0 0 1 -39.38 28.18A24.50 24.50 0 0 0 -2.62 28.18A31.50 31.50 0 0 1 44.62 28.18A24.50 24.50 0 0 0 81.38 28.18A31.50 31.50 0 0 1 128.62 28.18A24.50 24.50 0 0 0 165.38 28.18A31.50 31.50 0 0 1 212.62 28.18A24.50 24.50 0 0 0 249.38 28.18'/><path stroke='%23008026' d='M-81.38 32.82A24.50 24.50 0 0 1 -44.62 32.82A31.50 31.50 0 0 0 2.62 32.82A24.50 24.50 0 0 1 39.38 32.82A31.50 31.50 0 0 0 86.62 32.82A24.50 24.50 0 0 1 123.38 32.82A31.50 31.50 0 0 0 170.62 32.82A24.50 24.50 0 0 1 207.38 32.82A31.50 31.50 0 0 0 254.62 32.82'/><path stroke='%23004dff' d='M-76.12 37.45A17.50 17.50 0 0 1 -49.88 37.45A38.50 38.50 0 0 0 7.88 37.45A17.50 17.50 0 0 1 34.12 37.45A38.50 38.50 0 0 0 91.88 37.45A17.50 17.50 0 0 1 118.12 37.45A38.50 38.50 0 0 0 175.88 37.45A17.50 17.50 0 0 1 202.12 37.45A38.50 38.50 0 0 0 259.88 37.45'/><path stroke='%23750787' d='M-70.88 42.08A10.50 10.50 0 0 1 -55.12 42.08A45.50 45.50 0 0 0 13.12 42.08A10.50 10.50 0 0 1 28.88 42.08A45.50 45.50 0 0 0 97.12 42.08A10.50 10.50 0 0 1 112.88 42.08A45.50 45.50 0 0 0 181.12 42.08A10.50 10.50 0 0 1 196.88 42.08A45.50 45.50 0 0 0 265.12 42.08'/></svg>") 50% 0 / 84px 61px repeat-x;
     pointer-events: none;
   }
-  :root[data-theme=pride] #bar .icon { box-shadow: 0 1px 5px rgb(40 10 25 / .25); } /* white buttons on white and rainbow */
-  :root[data-theme=trans] { --flag: var(--flag-trans); --glow-bg: #5bcefa; --run-white: #f5a9b8; --run-black: #5bcefa; }
+  :root[data-theme=trans] { --flag: var(--flag-trans); --glow: 0; /* no glow, the stripes end sharp */ --run-white: #f5a9b8; --run-black: #5bcefa; --edge-white: #f5a9b8; --play: #5bcefa; --tools: #e0809a; /* ▶ and ❚❚: the flag's light blue; End and Adjust time: its pink, a little darker */ }
   :root[data-theme=wlw] {
-    /* The flag spread over the screen, upside down: its dark pink side on White's edge,
-       its dark orange side on Black's (outermost on the screen edge). The top 5px of a bar is its wavy edge. */
-    --flag: linear-gradient(#a30262 18%, #d362a4 22% 38%, #fff 42% 58%, #ff9a56 62% 78%, #d52d00 82%);
-    --run-white: linear-gradient(#d362a4 23.5px, #a30262 25.5px);
-    --run-black: linear-gradient(#ff9a56 23.5px, #d52d00 25.5px);
+    /* The flag spread over the screen: its dark orange on White's edge (top), its purple on Black's. */
+    --flag: linear-gradient(#d52d00 10%, #ff9a56 18% 34%, #fff 42% 58%, #d362a4 66% 82%, #a30262 90%); /* clear stripes, softly blended; the outer two thinner, their glow adds the rest */
+    --run-white: #d52d00;
+    --run-black: #a30262;
+    --edge-white: #d52d00;
   }
   /* Each half glows in the flag stripe next to it. */
-  :root[data-theme=wlw] #white { --glow-bg: #a30262; }
-  :root[data-theme=wlw] #black { --glow-bg: #d52d00; }
+  :root[data-theme=wlw] #white { --glow-bg: #d52d00; }
+  :root[data-theme=wlw] #black { --glow-bg: #a30262; }
+  /* wlw: no edge at all: the bar flows on into both halves at full colour and fades out quickly. */
+  :root[data-theme=wlw] { --glow: 1; --play: #a30262; --tools: #ff9a56; /* ▶ in the pause: the flag's dark rose; End and Adjust time: its light orange */ }
+  :root[data-theme=wlw] .half::before { height: 12px; } /* short, so the outer stripes look no wider than the others */
   * { box-sizing: border-box; margin: 0; }
   html, body { height: 100%; }
   body {
     display: grid;
     grid-template-rows: minmax(0, .94fr) auto minmax(0, 1fr); /* white a touch smaller: bright areas look bigger than dark ones */
     height: 100dvh;
-    background: var(--bar);
+    /* Shows only through hairline gaps at the edges of White's turned-around half, so it has her colour. */
+    background: var(--white-bg);
     font-family: Nunito, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
     user-select: none;
     -webkit-user-select: none;
@@ -99,6 +106,7 @@
     overflow: hidden;
     transition: grid-template-rows .5s ease;
   }
+  body:has(#white:is(.critical, .flagged)) { background: var(--out); }
   /* The half whose turn it is grows a little, pushing the bar towards the other player. */
   body.turn-white { grid-template-rows: minmax(0, 1.5fr) auto minmax(0, 1fr); }
   body.turn-black { grid-template-rows: minmax(0, .94fr) auto minmax(0, 1.9fr); }
@@ -120,6 +128,14 @@
   #black { background-color: var(--black-bg); color: var(--black-fg); }
   #white { --run-bg: var(--run-white); }
   #black { --run-bg: var(--run-black); }
+  /* Room for a camera in the screen (full screen) or the phone's bars at the screen edge of each half:
+     the turn bar grows by it, and the heart and the colours keep clear of it. */
+  #white { --cutout: env(safe-area-inset-top, 0px); }
+  #black { --cutout: env(safe-area-inset-bottom, 0px); }
+  /* Not every phone tells where its camera is, so in full screen the top keeps a little room free for it. */
+  :root:fullscreen #white { --cutout: max(env(safe-area-inset-top, 0px), 6px); }
+  @media (display-mode: fullscreen) { #white { --cutout: max(env(safe-area-inset-top, 0px), 6px); } }
+  .half { padding-bottom: var(--cutout); } /* the clock and statistics keep clear of it too */
   .half { isolation: isolate; transition: background-color .4s, color .4s; }
   /* Soft fade from the middle bar into each half (its top edge, also for the turned-around one). */
   .half::before {
@@ -132,8 +148,9 @@
     height: 28px;
     background: var(--glow-bg, var(--stripes)); /* a striped flag glows in its outer stripe */
     opacity: var(--glow);
-    -webkit-mask: linear-gradient(#000 2px, transparent);
-    mask: linear-gradient(#000 2px, transparent);
+    /* eased, so there is no visible line where the fade starts or ends */
+    -webkit-mask: linear-gradient(#000, rgb(0 0 0 / .84) 25%, rgb(0 0 0 / .5) 50%, rgb(0 0 0 / .16) 75%, transparent);
+    mask: linear-gradient(#000, rgb(0 0 0 / .84) 25%, rgb(0 0 0 / .5) 50%, rgb(0 0 0 / .16) 75%, transparent);
     pointer-events: none;
   }
   #white::before { top: -1px; scale: -1 1; } /* mirrored back, so the colours line up with the bar; 1px into the bar, so no light seam shows */
@@ -149,11 +166,14 @@
     text-transform: uppercase;
   }
   .stone { width: 1.1em; height: 1.1em; background: center / contain no-repeat; }
-  /* Once both players have moved, the queen alone says whose half it is. */
-  .quiet .name [data-t] { display: none; }
+  /* Once both players have moved, the name and stone go: the clock alone is enough.
+     The same on the pause screen, where PAUSED says it. */
+  .quiet .name, .paused.with-stats .name { display: none; }
+  /* But when time runs short the half turns pink, so the name comes back to say whose it is. */
+  .half.critical .name { display: flex; }
   /* A small queen in each player's colour, with a faint pink edge. */
-  #black .stone { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -4 232 268' fill='%234a3c44' stroke='%23f07bb0' stroke-width='7' stroke-linejoin='round'%3E%3Ccircle cx='22' cy='64' r='13'/%3E%3Ccircle cx='60' cy='42' r='13'/%3E%3Ccircle cx='100' cy='32' r='13'/%3E%3Ccircle cx='140' cy='42' r='13'/%3E%3Ccircle cx='178' cy='64' r='13'/%3E%3Cpath d='M22 72L48 150H152L178 72 138 110 140 54 100 102 60 54 62 110Z'/%3E%3Crect x='42' y='148' width='116' height='20' rx='10'/%3E%3Cpath d='M58 168H142C138 196 146 214 160 226H40C54 214 62 196 58 168Z'/%3E%3Crect x='24' y='224' width='152' height='32' rx='15'/%3E%3C/svg%3E"); }
-  #white .stone { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -4 232 268' fill='%23ffffff' stroke='%23b98aa0' stroke-width='9' stroke-linejoin='round'%3E%3Ccircle cx='22' cy='64' r='13'/%3E%3Ccircle cx='60' cy='42' r='13'/%3E%3Ccircle cx='100' cy='32' r='13'/%3E%3Ccircle cx='140' cy='42' r='13'/%3E%3Ccircle cx='178' cy='64' r='13'/%3E%3Cpath d='M22 72L48 150H152L178 72 138 110 140 54 100 102 60 54 62 110Z'/%3E%3Crect x='42' y='148' width='116' height='20' rx='10'/%3E%3Cpath d='M58 168H142C138 196 146 214 160 226H40C54 214 62 196 58 168Z'/%3E%3Crect x='24' y='224' width='152' height='32' rx='15'/%3E%3C/svg%3E"); }
+  #black .stone, #adjust [data-p=black] .stone { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -4 232 268' fill='%234a3c44' stroke='%23f07bb0' stroke-width='7' stroke-linejoin='round'%3E%3Ccircle cx='22' cy='64' r='13'/%3E%3Ccircle cx='60' cy='42' r='13'/%3E%3Ccircle cx='100' cy='32' r='13'/%3E%3Ccircle cx='140' cy='42' r='13'/%3E%3Ccircle cx='178' cy='64' r='13'/%3E%3Cpath d='M22 72L48 150H152L178 72 138 110 140 54 100 102 60 54 62 110Z'/%3E%3Crect x='42' y='148' width='116' height='20' rx='10'/%3E%3Cpath d='M58 168H142C138 196 146 214 160 226H40C54 214 62 196 58 168Z'/%3E%3Crect x='24' y='224' width='152' height='32' rx='15'/%3E%3C/svg%3E"); }
+  #white .stone, #adjust [data-p=white] .stone { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -4 232 268' fill='%23ffffff' stroke='%23b98aa0' stroke-width='9' stroke-linejoin='round'%3E%3Ccircle cx='22' cy='64' r='13'/%3E%3Ccircle cx='60' cy='42' r='13'/%3E%3Ccircle cx='100' cy='32' r='13'/%3E%3Ccircle cx='140' cy='42' r='13'/%3E%3Ccircle cx='178' cy='64' r='13'/%3E%3Cpath d='M22 72L48 150H152L178 72 138 110 140 54 100 102 60 54 62 110Z'/%3E%3Crect x='42' y='148' width='116' height='20' rx='10'/%3E%3Cpath d='M58 168H142C138 196 146 214 160 226H40C54 214 62 196 58 168Z'/%3E%3Crect x='24' y='224' width='152' height='32' rx='15'/%3E%3C/svg%3E"); }
 
   .time {
     font-size: min(24vw, 15vh);
@@ -170,10 +190,10 @@
   .running::after {
     content: "";
     position: absolute;
-    bottom: 0;
+    bottom: -2px; /* 2px past the screen edge, so no light seam shows between it and the phone's status bar */
     left: 0;
     right: 0;
-    height: 44px;
+    height: calc(44px + var(--cutout));
     pointer-events: none;
   }
   /* Its inner edge is wavy: a wave on top, solid below. */
@@ -189,31 +209,40 @@
   .heart-btn {
     display: none;
     position: absolute;
-    bottom: 0;
+    bottom: var(--cutout);
     left: 50%;
     z-index: 1;
     width: 64px;
     height: 44px;
     min-height: 0;
-    padding: 0;
+    padding: 0 0 3px; /* the heart sits near the screen edge; the button stays big enough to tap */
     border-radius: 0;
     background: none;
     translate: -50% 0;
-    place-items: center;
+    place-items: end center;
     -webkit-tap-highlight-color: transparent;
   }
-  .running .heart-btn { display: grid; }
+  .running .heart-btn, body:is(.ready, .paused) .heart-btn { display: grid; }
+  .half.with-chart .heart-btn { display: none; } /* the bar chart keeps clear of the heart */
+  #black .heart-btn { padding-bottom: 5px; } /* a little higher at the bottom edge */
+  /* Before the game and while paused there are no bars behind the hearts, so each heart takes its
+     player's bar colour from the theme (both pink in the Go Girls* colours). Paused, they rest. */
+  :root body:is(.ready, .paused) :is(#black, #white) .heart-btn svg { fill: var(--run-bg); stroke: none; }
+  body.paused .heart-btn svg { animation: none; }
   .heart-btn svg { width: 27px; height: 27px; animation: pulse 2.4s ease-in-out infinite; }
   #black .heart-btn svg { fill: #000; }
   #white .heart-btn svg { fill: #fff; }
   :root[data-theme] #white .heart-btn svg { stroke: #1c1418; stroke-width: 1.3; } /* stays visible on a white stripe */
+  /* Pride: no bars, only the hearts, with the rainbow shimmering through them. */
+  :root[data-theme=pride] .running::after { content: none; }
+  :root[data-theme=pride] body :is(#black, #white) .heart-btn svg { fill: url(#pride-heart); stroke: none; }
   @keyframes pulse { 50% { opacity: .45; } }
-  @media (prefers-reduced-motion: reduce) { .heart-btn svg, .stats, #themes { animation: none !important; } body, .time { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .heart-btn svg, .stats, #themes, .paused .hint { animation: none !important; } body, .time { transition: none; } }
 
   /* The colours, just above the heart, facing the player who tapped it. */
   #themes {
     position: absolute;
-    bottom: 52px;
+    bottom: calc(52px + var(--cutout));
     left: 50%;
     z-index: 2;
     display: flex;
@@ -243,7 +272,6 @@
   .over.with-stats .flagged .time { display: none; } /* 0.0 says nothing new on the end screen */
   .over .stats .mode { display: none; } /* the bar shows the time setting again */
   .over.with-stats .half { gap: .4vh; padding-top: 14px; }
-  .over .chart svg { height: 26px; }
   .over .hint { font-size: min(12vw, 5.5vh); font-weight: 800; line-height: 1.05; letter-spacing: .03em; opacity: 1; }
 
   /* Statistics: at the end, and while paused after a tap on the middle box. Each player reads their own. */
@@ -251,6 +279,10 @@
   /* Clear of the bar: a narrower fade and some room; if it is too tall, the rest goes to the screen edge. */
   .with-stats .half { gap: 1vh; padding-top: 16px; justify-content: safe center; }
   .with-stats .hint:empty { display: none; }
+  .paused .hint { text-transform: uppercase; letter-spacing: .08em; animation: breathe 3s ease-in-out infinite; } /* "PAUSED" softly fades in and out */
+  /* With the statistics, "PAUSED" sits where the name was, on the side whose clock was running. */
+  .paused.with-stats .half:not(.waiting) .hint { order: -1; font-size: clamp(16px, 3vh, 26px); font-weight: 800; opacity: 1; }
+  @keyframes breathe { 50% { opacity: .4; } }
   .with-stats .stats { display: grid; animation: fade-in .6s ease-out; }
   @keyframes fade-in { from { opacity: 0; transform: translateY(8px); } }
   .with-stats:not(.over) .time { font-size: min(14vw, 7.5vh); }
@@ -259,10 +291,19 @@
   .stats .total { margin-top: .35em; }
   .stats .mode { margin-bottom: .35em; }
   .chart { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center; gap: 3px; margin-top: .6em; touch-action: none; }
-  .chart svg { display: block; height: 34px; fill: currentColor; }
-  .chart .has-sel rect { opacity: .35; }
-  .chart .has-sel rect.sel { opacity: 1; }
+  /* The bars: plain boxes in a row, so they stay crisp and keep round tops however many there are. */
+  .chart .bars { position: relative; display: flex; align-items: flex-end; height: 34px; border-bottom: 1px solid color-mix(in srgb, currentColor 35%, transparent); }
+  .chart .bars i { flex: none; width: var(--w); min-height: 2px; background: currentColor; border-radius: 4px 4px 0 0; transition: opacity .15s; }
+  .chart .has-sel i { opacity: .35; }
+  .chart .has-sel i.sel { opacity: 1; }
+  /* The player's average move time, as a pink dashed line across the bars. */
+  .chart .avg { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--run); pointer-events: none; }
+  .flagged .chart .avg { border-color: #ffc2dc; } /* on the bright pink half */
   .chart .readout { min-height: 1.3em; font-size: .9em; font-weight: 700; } /* one line: the title, or the tapped move */
+  /* A tap on the statistics shows only the chart, big. */
+  .stats.chart-only { grid-template-columns: 1fr; width: min(86vw, 420px); }
+  .chart-only .chart { margin-top: 0; gap: 6px; }
+  .chart-only .chart .bars { height: min(26vh, 170px); }
   .chart small { font-size: .85em; opacity: .7; }
   .chart small.readout { font-weight: 600; }
   .low .time { color: var(--low); }
@@ -272,16 +313,65 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 3px 16px;
+    padding: 0 16px;
     background: var(--stripes);
     color: var(--bar-fg);
   }
   #bar button { min-height: 38px; padding: 0 14px; }
-  /* Pause / resume and reset are round icon buttons. */
-  #bar .icon { display: grid; place-items: center; flex: none; width: 38px; padding: 0; }
-  #bar .icon svg { width: 22px; height: 22px; }
+  /* Pause / resume and the menu are big round buttons that sit on the bar and reach a little
+     over its edges (the bar itself stays 44px high), with a soft shadow so they look laid on top. */
+  #bar { position: relative; z-index: 1; }
+  #bar .icon { display: grid; place-items: center; flex: none; width: 52px; min-height: 52px; margin: -4px 0; padding: 0; border-radius: 50%; box-shadow: 0 1px 6px rgb(40 10 25 / .28); }
+  #bar .icon svg { width: 26px; height: 26px; }
   #pause .play, #pause.paused .bars { display: none; }
   #pause.paused .play { display: block; }
+  #bar .spacer { visibility: hidden; }
+  /* The pause button and the three pause buttons are one family of white circles that turn into each other.
+     Pausing: the pause symbol fades into ▶ in the same circle (Resume lies on top of the pause button),
+     then End and Adjust time come out from under it and slide slowly to the middle, the furthest first.
+     Resuming: all three slide back together; End and Adjust time are faster and disappear under ▶,
+     and when ▶ is home its symbol fades back into the pause symbol. No circle grows or shrinks.
+     The script sets where each one stops (--to) and the short delays going out (--in). */
+  #pause { transition: opacity 0s .9s; } /* resuming: back under ▶ the moment it arrives */
+  body.paused #pause { opacity: 0; pointer-events: none; transition: opacity 0s .35s; } /* pausing: gone once ▶ covers it */
+  #bar .trio { position: absolute; inset: 0; pointer-events: none; }
+  #bar .trio button {
+    position: absolute;
+    top: -4px;
+    left: 16px;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    min-height: 52px;
+    padding: 0;
+    border-radius: 50%;
+    box-shadow: 0 1px 6px rgb(40 10 25 / .28);
+    opacity: 0;
+    transition: left .9s cubic-bezier(.4, 0, .2, 1), opacity 0s .9s, filter .25s; /* resuming: slide home, then vanish under ▶ */
+  }
+  #bar .trio #resume { color: var(--play, var(--out)); transition: left .9s cubic-bezier(.4, 0, .2, 1), opacity .35s .9s, filter .25s; } /* ▶ fades into the pause symbol */
+  #bar .trio svg { width: 26px; height: 26px; }
+  #bar .trio #resume path { stroke: var(--play-line, none); stroke-width: 3; stroke-linejoin: round; paint-order: stroke; } /* an outline in some themes */
+  #pause { color: var(--play, var(--out)); } /* ▶ and ❚❚ keep the same colour as ▶ in the pause, in every theme */
+  #bar .trio :is(#end, #adjustBtn) { color: var(--tools, #f07bb0); } /* End and Adjust time: a colour from each theme (Go Girls*: light pink) */
+  #pause :is(rect, path) { stroke: var(--pause-line, none); stroke-width: 3; stroke-linejoin: round; paint-order: stroke; }
+  body.paused #bar .trio { pointer-events: auto; }
+  body.paused #bar .trio button {
+    opacity: 1;
+    transition: left .9s cubic-bezier(.25, 1.15, .4, 1) calc(.35s + var(--in)), opacity 0s .35s, filter .25s; /* pausing: out from under ▶ */
+  }
+  body.paused #bar .trio #resume { transition: left .9s cubic-bezier(.25, 1.15, .4, 1) calc(.35s + var(--in)), opacity .35s, filter .25s; } /* the pause symbol fades into ▶ */
+  /* End asks in place: a first tap widens it into "End game?", a second tap ends the game, and a tap
+     anywhere else (it lands on a see-through shield behind the button) puts it back. Meanwhile ▶ and
+     the stopwatch fade out. The script sets the wide width (--wide) to fit the words. */
+  #bar .trio #end { display: flex; align-items: center; justify-content: center; border-radius: 26px; }
+  body.paused #bar .trio #end { transition: left .9s cubic-bezier(.25, 1.15, .4, 1) calc(.35s + var(--in)), opacity 0s .35s, width .35s ease, transform .35s ease; }
+  #bar .trio #end.wide { z-index: 5 !important; width: var(--wide); transform: translateX(calc((52px - var(--wide)) / 2)); }
+  #end .end-label { max-width: 0; overflow: hidden; white-space: nowrap; opacity: 0; font-size: 15px; font-weight: 800; transition: max-width .35s ease, margin .35s ease, opacity .15s; }
+  #end.wide .end-label { max-width: 220px; margin-left: 8px; opacity: 1; transition: max-width .35s ease, margin .35s ease, opacity .25s .1s; }
+  body.confirm-end #bar .trio :is(#resume, #adjustBtn) { filter: opacity(0); }
+  #endShield { position: fixed; inset: 0; z-index: 4; }
+  @media (prefers-reduced-motion: reduce) { #bar .trio button, #pause { transition: none !important; } }
   button {
     min-height: 48px;
     padding: 0 20px;
@@ -307,9 +397,7 @@
     font-size: 14px;
     line-height: 1.15;
   }
-  #info .edit { flex: none; width: 18px; height: 18px; color: var(--out); }
   #info.plain { opacity: 1; background: transparent; border-color: transparent; }
-  #info.plain .edit { display: none; }
   #info.plain > span { visibility: hidden; } /* during a game the time setting is in the statistics */
   #info small:empty { display: none; }
   #info small { display: block; font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
@@ -337,17 +425,16 @@
   }
   dialog::backdrop { background: rgb(40 10 25 / .6); }
   dialog .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 2px; }
-  dialog .group { font-size: 15px; font-weight: 800; color: var(--low); }
+  dialog .group { font-size: 13px; font-weight: 800; color: var(--low); }
   dialog .group a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+  dialog .version { display: block; font-size: 11px; font-weight: 600; opacity: .6; } /* date and time of the last update, to see if the newest one is here */
   dialog .heart { width: 14px; height: 14px; margin-left: 2px; vertical-align: -1px; fill: var(--black-bg); }
   .lang { display: flex; padding: 2px; border: 1.5px solid #f4b6d1; border-radius: 14px; }
   .lang button { min-height: 0; padding: 3px 9px; border-radius: 12px; background: transparent; font-size: 12px; font-weight: 700; }
   .lang button.on { background: var(--out); color: #fff; }
   .lang button:focus-visible { outline: none; }
   dialog h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
-  dialog.confirm { width: min(320px, calc(100vw - 32px)); }
-  dialog.confirm h2 { margin-bottom: 8px; }
-  dialog.confirm p { margin-bottom: 22px; font-size: 16px; }
+
   dialog .actions button:focus-visible { outline: none; } /* no ring on the button that gets focus on opening */
   dialog label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
   .fields { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 16px; }
@@ -363,6 +450,7 @@
     text-align: center;
   }
   dialog input.wrong { border-color: var(--out); background: #ffe3ef; }
+  dialog .error { margin: 0 4px 10px; font-size: 14px; font-weight: 700; color: var(--out); }
   dialog .check { display: flex; align-items: center; gap: 10px; margin: 0 0 8px; font-size: 16px; }
   dialog .check input, dialog .option input { flex: none; width: 24px; height: 24px; padding: 0; accent-color: var(--out); }
   dialog .option {
@@ -396,6 +484,17 @@
     font-weight: 700;
   }
   dialog .again svg { width: 16px; height: 16px; }
+  /* Correcting the time during a game: one box per player. */
+  #adjust .adj { margin-bottom: 8px; padding: 10px 12px; border: 2px solid #f4b6d1; border-radius: 14px; background: #fff; }
+  #adjust .adj-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+  #adjust .who { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 800; }
+  #adjust .adj-time { text-align: right; line-height: 1.1; }
+  #adjust .adj-time b { font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  #adjust .adj-time small { display: block; font-size: 12px; font-weight: 600; }
+  #adjust .adj-time small:empty { display: none; }
+  #adjust .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  #adjust .steps button { min-height: 38px; padding: 0; border-radius: 12px; background: var(--bar); font-size: 14px; font-weight: 800; }
+  #adjust .actions { justify-content: space-between; margin-top: 12px; }
   .actions { display: flex; gap: 10px; justify-content: flex-end; }
   .actions .primary { background: var(--out); color: #fff; }
   /* Cancel and Set stay at the bottom of the settings, even while scrolling. */
@@ -403,6 +502,15 @@
 </style>
 </head>
 <body>
+<!-- The rainbow for the Pride hearts; it slowly moves through them, so the colours keep changing. -->
+<svg id="pride-defs" width="0" height="0" style="position: absolute" aria-hidden="true">
+  <linearGradient id="pride-heart" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="24" spreadMethod="repeat">
+    <stop offset="0" stop-color="#e40303"/><stop offset=".17" stop-color="#ff8c00"/><stop offset=".33" stop-color="#ffed00"/>
+    <stop offset=".5" stop-color="#008026"/><stop offset=".67" stop-color="#004dff"/><stop offset=".83" stop-color="#750787"/>
+    <stop offset="1" stop-color="#e40303"/>
+    <animateTransform attributeName="gradientTransform" type="translate" from="0 0" to="24 24" dur="12s" repeatCount="indefinite"/>
+  </linearGradient>
+</svg>
 
 <section class="half" id="white">
   <div class="name"><span class="stone"></span><span data-t="white">White</span></div>
@@ -419,11 +527,24 @@
   </button>
   <button id="info">
     <span><small id="system"></small><span id="setting"></span></span>
-    <svg class="edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13.5 6.5l4 4"/></svg>
   </button>
-  <button id="reset" class="icon">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 3.5v4h4"/></svg>
-  </button>
+  <!-- No button on the right; this keeps the time setting in the middle. -->
+  <span class="icon spacer" aria-hidden="true"></span>
+  <!-- While "End game?" asks: catches a tap anywhere else, which cancels. -->
+  <div id="endShield" hidden></div>
+  <!-- While paused: these three slide out from the pause button to the middle of the bar. -->
+  <div class="trio">
+    <button type="button" id="resume">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.2v13.6c0 .8.9 1.3 1.6.8l10-6.8c.6-.4.6-1.2 0-1.6l-10-6.8C8.9 3.9 8 4.4 8 5.2z"/></svg>
+    </button>
+    <button type="button" id="end">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 3.5v8"/><path d="M6.6 7a7.5 7.5 0 1 0 10.8 0"/></svg>
+      <span class="end-label" data-t="endAsk">End game?</span>
+    </button>
+    <button type="button" id="adjustBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13.5" r="8"/><path d="M10 2.5h4M12 2.5v3"/><path d="M12 13.5V9.5"/></svg>
+    </button>
+  </div>
 </nav>
 
 <section class="half" id="black">
@@ -442,9 +563,9 @@
 </div>
 
 <dialog id="settings">
-  <form method="dialog">
+  <form method="dialog" novalidate>
     <div class="top">
-      <div class="group">A Go Girls* App by <a href="https://github.com/SinaLaura/chess-timer" target="_blank" rel="noopener">Sina</a> <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.2 0 3.7 1.2 5.2 3 1.5-1.8 3-3 5.2-3 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg></div>
+      <div class="group"><a href="https://sinalaura.github.io/#apps" target="_blank" rel="noopener">An Ankabuti Application</a> <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.8 4.5c2.2 0 3.7 1.2 5.2 3 1.5-1.8 3-3 5.2-3 3.8 0 5.9 3.9 4.4 7.3C19.5 16.4 12 21 12 21z"/></svg><small class="version">Version 27.10. 16:50</small></div>
       <div class="lang"><button type="button" data-lang="en">EN</button><button type="button" data-lang="de">DE</button></div>
     </div>
     <h2 data-t="timeSetting">Time setting</h2>
@@ -457,7 +578,7 @@
       <span><b data-t="simpleTime">Simple timer</b><small data-t="simpleDesc">Just a main time, nothing added</small></span>
     </label>
     <div class="own">
-      <label data-t="mainTime">Main time</label>
+      <label data-t="mainTime">Main time (per player)</label>
       <div class="fields">
         <input id="mainMin" type="number" inputmode="numeric" min="0" max="600"> min
         <input id="mainSec" type="number" inputmode="numeric" min="0" max="59"> s
@@ -473,7 +594,8 @@
         <span id="againText"></span>
       </button>
     </div>
-    <label class="check"><input id="sound" type="checkbox"> <span data-t="sound">Chime and voice</span></label>
+    <p id="formError" class="error" role="alert" hidden></p>
+    <label class="check"><input id="sound" type="checkbox"> <span data-t="sound">Sounds and voice</span></label>
     <div class="actions">
       <!-- Set comes first: the phone's Done key presses the first button in the form. -->
       <button value="set" class="primary" data-t="set">Set</button>
@@ -482,16 +604,24 @@
   </form>
 </dialog>
 
-<dialog id="confirmReset" class="confirm">
+<!-- During a game, the menu button pauses and opens this: correct each player's time, or start again. -->
+<dialog id="adjust">
   <form method="dialog">
-    <h2 data-t="resetAsk">Reset both clocks?</h2>
-    <p data-t="resetInfo">The game starts again from the beginning.</p>
+    <h2 data-t="adjustTitle">Adjust time</h2>
+    <div class="adj" data-p="black">
+      <div class="adj-top"><span class="who"><span class="stone"></span><span data-t="black">Black</span></span><span class="adj-time"><b></b><small></small></span></div>
+      <div class="steps"><button type="button" data-d="-60">−1 min</button><button type="button" data-d="-10">−10 s</button><button type="button" data-d="10">+10 s</button><button type="button" data-d="60">+1 min</button></div>
+    </div>
+    <div class="adj" data-p="white">
+      <div class="adj-top"><span class="who"><span class="stone"></span><span data-t="white">White</span></span><span class="adj-time"><b></b><small></small></span></div>
+      <div class="steps"><button type="button" data-d="-60">−1 min</button><button type="button" data-d="-10">−10 s</button><button type="button" data-d="10">+10 s</button><button type="button" data-d="60">+1 min</button></div>
+    </div>
     <div class="actions">
-      <button value="cancel" data-t="cancel">Cancel</button>
-      <button value="reset" class="primary" data-t="reset">Reset</button>
+      <button value="done" class="primary" data-t="done">Done</button>
     </div>
   </form>
 </dialog>
+
 
 <script>
   // Two time systems: increment (Fischer: seconds added after every move; standard: rapid
@@ -518,9 +648,9 @@
   // English and German texts; the EN | DE switch sits in the settings dialog.
   const TEXT = {
     en: {
-      black: 'Black', white: 'White', pause: 'Pause', resume: 'Resume', reset: 'Reset',
-      startHint: "Tap here to start White's clock", yourMove: 'Tap after your move', paused: 'Paused',
-      lost: 'LOST', won: 'WON', resetAsk: 'Reset timer?', resetInfo: 'The game starts again from the beginning.',
+      black: 'Black', white: 'White', pause: 'Pause', resume: 'Resume', reset: 'Reset', begin: "Start White's clock",
+      yourMove: 'Tap after your move', paused: 'Paused',
+      lost: 'LOST', won: 'WON',
       moves: 'Moves', timeUsed: 'Time used', perMove: 'Avg. move', longest: 'Longest move',
       chartTitle: 'Time per move', moveAt: (n, d) => `move ${n} · ${d}`,
       movesAt: (a, b, d) => `moves ${a}–${b} · avg. ${d}`,
@@ -530,13 +660,17 @@
       fischerTime: 'Increment', fischerDesc: 'Main time, plus seconds after every move',
       simpleTime: 'Simple timer', simpleDesc: 'Just a main time, nothing added', simpleShort: 'Timer',
       resetTo: s => `Reset to ${s}`,
-      mainTime: 'Main time', added: 'Added after each move', sound: 'Chime and voice',
+      adjustTitle: 'Adjust time', done: 'Done', newGame: 'New game',
+      endGame: 'End game', endAsk: 'End game?',
+      mainTime: 'Main time (per player)', added: 'Added after each move', sound: 'Sounds and voice',
       cancel: 'Cancel', set: 'Set', colours: 'Colours',
+      outOfRange: (min, max) => `Please enter a number from ${min} to ${max}.`,
+      noTime: 'The time cannot be 0.',
     },
     de: {
-      black: 'Schwarz', white: 'Weiß', pause: 'Pause', resume: 'Weiter', reset: 'Neustart',
-      startHint: 'Hier tippen – Weiß beginnt', yourMove: 'Nach deinem Zug tippen', paused: 'Pausiert',
-      lost: 'VERLOREN', won: 'GEWONNEN', resetAsk: 'Timer zurücksetzen?', resetInfo: 'Das Spiel beginnt dann von vorne.',
+      black: 'Schwarz', white: 'Weiß', pause: 'Pause', resume: 'Weiter', reset: 'Neustart', begin: 'Uhr von Weiß starten',
+      yourMove: 'Nach deinem Zug tippen', paused: 'Pausiert',
+      lost: 'VERLOREN', won: 'GEWONNEN',
       moves: 'Züge', timeUsed: 'Verbrauchte Zeit', perMove: 'Ø Zug', longest: 'Längster Zug',
       chartTitle: 'Zeit pro Zug', moveAt: (n, d) => `Zug ${n} · ${d}`,
       movesAt: (a, b, d) => `Züge ${a}–${b} · Ø ${d}`,
@@ -544,10 +678,14 @@
       lostSay: (l, w) => `${l} hat die Zeit überschritten. ${w} gewinnt!`,
       timeSetting: 'Bedenkzeit',
       fischerTime: 'Inkrement', fischerDesc: 'Grundbedenkzeit, plus Sekunden nach jedem Zug',
-      simpleTime: 'Einfacher Timer', simpleDesc: 'Nur Grundbedenkzeit, ohne Zusatzzeit', simpleShort: 'Timer',
+      simpleTime: 'Einfacher Timer', simpleDesc: 'Nur Grundbedenkzeit ohne Zusatzzeit', simpleShort: 'Timer',
       resetTo: s => `Zurück auf ${s}`,
-      mainTime: 'Grundbedenkzeit', added: 'Dazu nach jedem Zug', sound: 'Klang und Stimme',
+      adjustTitle: 'Zeit korrigieren', done: 'Fertig', newGame: 'Neues Spiel',
+      endGame: 'Spiel beenden', endAsk: 'Spiel beenden?',
+      mainTime: 'Grundbedenkzeit (pro Person)', added: 'Dazu nach jedem Zug', sound: 'Ton und Stimme',
       cancel: 'Abbrechen', set: 'OK', colours: 'Farben',
+      outOfRange: (min, max) => `Bitte eine Zahl von ${min} bis ${max} eingeben.`,
+      noTime: 'Die Zeit darf nicht 0 sein.',
     },
   };
   let lang = 'en';
@@ -560,15 +698,15 @@
   // state: 'ready' | 'running' | 'paused' | 'over'
   // left: time left per player;
   // turnUsed + turnStart: time used so far in the current turn (pausing keeps turnUsed).
-  // stats: time used per player, and the time of each move; showStats: shown while paused;
-  // chosen: the bar tapped in each player's chart.
-  let state, active, loser, left, warned, moved, turnUsed, turnStart, wakeLock, stats, showStats, chosen;
+  // stats: time used per player, and the time of each move (shown while paused and at the end);
+  // chosen: the bar tapped in each player's chart; charts: the chart shown instead of the numbers.
+  let state, active, loser, left, warned, moved, turnUsed, turnStart, wakeLock, stats, chosen, charts;
 
   const ui = {};
   for (const p of ['black', 'white']) {
     const root = document.getElementById(p);
     ui[p] = { root, time: root.querySelector('.time'), hint: root.querySelector('.hint'), stats: root.querySelector('.stats') };
-    root.addEventListener('pointerdown', () => tap(p));
+    root.addEventListener('pointerdown', e => (document.body.classList.contains('with-stats') ? flipStats(e) : tap(p)));
     ui[p].stats.addEventListener('pointerdown', e => pickBar(p, e));
     ui[p].stats.addEventListener('pointermove', e => e.buttons && pickBar(p, e));
   }
@@ -595,16 +733,30 @@
   document.addEventListener('pointerdown', e => {
     if (!picker.contains(e.target) && !e.target.closest('.heart-btn')) picker.hidden = true;
   }, true);
+  // The phone's status bar has the colour of the screen's top edge: White's turn bar while her
+  // clock runs, otherwise her half (light, or pink when her time is short).
+  const themeColour = document.querySelector('meta[name=theme-color]');
+  function paintStatusBar() {
+    const edge = getComputedStyle(document.documentElement).getPropertyValue('--edge-white').trim();
+    const top = edge && document.getElementById('white').classList.contains('running')
+      ? edge
+      : getComputedStyle(document.body).backgroundColor;
+    if (themeColour.content !== top) themeColour.content = top;
+  }
   function setTheme(name) {
     if (!['pride', 'trans', 'wlw'].includes(name)) name = 'pink';
     if (name === 'pink') delete document.documentElement.dataset.theme;
     else document.documentElement.dataset.theme = name;
     for (const b of picker.querySelectorAll('[data-pick]')) b.classList.toggle('on', b.dataset.pick === name);
+    paintStatusBar();
   }
   try { setTheme(localStorage.getItem('chess-theme')); } catch (e) { setTheme('pink'); }
+  // The rainbow moving through the Pride hearts: still with reduced motion, and while paused (see render).
+  const prideDefs = document.getElementById('pride-defs');
+  const stillMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (stillMotion) prideDefs.pauseAnimations();
 
   const pauseBtn = document.getElementById('pause');
-  const resetBtn = document.getElementById('reset');
   const info = document.getElementById('info');
   const setting = document.getElementById('setting');
   const system = document.getElementById('system');
@@ -619,8 +771,8 @@
     warned = { black: false, white: false };
     moved = { black: false, white: false };
     stats = { black: { used: 0, times: [] }, white: { used: 0, times: [] } };
-    showStats = false;
     chosen = { black: null, white: null };
+    charts = false;
     releaseWake();
     render();
   }
@@ -633,11 +785,32 @@
   }
   const outOfTime = c => c.time <= 0;
 
+  // Full screen while playing: no phone bars around the clock. Browsers allow it only once a tap is
+  // finished (the halves react as the finger touches), so it is asked for when the finger lifts.
+  // Also in the app on the home screen: only then do some phones let the page reach under the camera.
+  // Not in the Play Store app: it already starts in full screen, and asking again only makes
+  // Chrome show its "swipe to exit full screen" notice every time. That app opens the page with
+  // an android-app:// referrer; it is kept for later page loads in the same visit.
+  // iPhones ignore it.
+  let inPlayApp = document.referrer.startsWith('android-app://');
+  try {
+    if (inPlayApp) sessionStorage.setItem('playApp', '1');
+    else inPlayApp = sessionStorage.getItem('playApp') === '1';
+  } catch (e) { /* storage blocked */ }
+  let wantFullScreen = false;
+  function goFullScreen() {
+    wantFullScreen = false;
+    const el = document.documentElement;
+    if (inPlayApp || document.fullscreenElement || !el.requestFullscreen) return;
+    el.requestFullscreen({ navigationUI: 'hide' }).catch(() => { /* not allowed here */ });
+  }
+  document.addEventListener('pointerup', () => wantFullScreen && goFullScreen());
+
   // Tapping your own half ends your move and starts the other clock.
   // Before the game, any tap starts White's clock: White always moves first.
   function tap(p) {
     unlockSound();
-    if (state === 'ready') { buzz(30); return start('white'); }
+    if (state === 'ready') { wantFullScreen = true; click(p); return start('white'); }
     if (state !== 'running' || active !== p) return;
     const c = clock(p);
     if (outOfTime(c)) return flag(p);
@@ -646,7 +819,7 @@
     stats[p].times.push(used);
     stats[p].used += used;
     moved[p] = true;
-    buzz(30);
+    click(p);
     start(other(p));
   }
 
@@ -668,19 +841,29 @@
     render();
   }
 
+  function pause() {
+    turnUsed += performance.now() - turnStart;
+    state = 'paused';
+    render();
+  }
+  // Leaving the app during a game (home button, another app, a call) pauses the clock.
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && state === 'running') pause();
+  });
+
   function togglePause() {
     unlockSound();
+    if (state === 'ready') { tap('white'); return goFullScreen(); } // the play button before the game: same as White's tap, Black's clock starts
     if (state === 'running') {
-      turnUsed += performance.now() - turnStart;
-      state = 'paused';
-      showStats = true;
-      buzz(60);
+      pause();
+      buzz(100);
+      return;
     } else if (state === 'paused') {
       turnStart = performance.now();
       state = 'running';
-      showStats = false;
-      buzz(60);
+      buzz(100);
       keepAwake();
+      goFullScreen(); // again, in case it was left while paused
     }
     render();
   }
@@ -697,7 +880,7 @@
     render();
   }
 
-  // A soft chime (no beeps) and a female voice, both switchable in the settings.
+  // A soft chime (no beeps), a click on each move and a female voice, all switchable in the settings.
   let soundOn = true, audio, speechUnlocked = false;
   try { soundOn = localStorage.getItem('chess-sound') !== 'off'; } catch (e) { /* storage blocked */ }
   const FEMALE = /samantha|zira|aria|jenny|ava|allison|susan|karen|moira|tessa|fiona|victoria|serena|libby|sonia|emma|hazel|female|seraphina|katja|amala|hedda|anna|helena|petra|marlene|vicki/i;
@@ -732,6 +915,23 @@
     });
   }
 
+  // A soft pop after each move: a short, clean tone that slides down a little;
+  // a little lower for Black, a little higher for White.
+  function click(p) {
+    if (!soundOn || !audio) return;
+    const t0 = audio.currentTime, k = p === 'black' ? .88 : 1.12;
+    const osc = audio.createOscillator(), gain = audio.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(650 * k, t0);
+    osc.frequency.setTargetAtTime(500 * k, t0, .015);
+    gain.gain.setValueAtTime(0, t0);
+    gain.gain.linearRampToValueAtTime(.5, t0 + .001);
+    gain.gain.setTargetAtTime(0, t0 + .001, .02);
+    osc.connect(gain).connect(audio.destination);
+    osc.start(t0);
+    osc.stop(t0 + .15);
+  }
+
   function say(text) {
     if (!soundOn || !('speechSynthesis' in window)) return;
     // Prefer a female voice, the natural-sounding ones when online, then en-US / de-DE.
@@ -749,16 +949,66 @@
     speechSynthesis.speak(u);
   }
 
-  pauseBtn.addEventListener('click', togglePause);
-  // During a game, Reset asks first (in our own dialog, not the browser's).
-  const confirmReset = document.getElementById('confirmReset');
-  resetBtn.addEventListener('click', () => {
-    if (state !== 'running' && state !== 'paused') return newGame();
-    confirmReset.returnValue = '';
-    confirmReset.showModal();
+  // The button on the left: start, pause, and after a game a new game right away.
+  pauseBtn.addEventListener('click', () => {
+    if (state === 'over') newGame();
+    togglePause();
   });
-  confirmReset.addEventListener('close', () => {
-    if (confirmReset.returnValue === 'reset') newGame();
+
+  // In the pause, three buttons: resume, end the game (asks first), adjust the time.
+  const trio = [...document.querySelectorAll('#bar .trio button')];
+  // Where each one stops: side by side, the middle one (End) in the centre of the bar.
+  // Short delays, so they move one after the other.
+  function placeTrio() {
+    const gap = 16, w = 52, x0 = (document.getElementById('bar').clientWidth - 3 * w - 2 * gap) / 2;
+    trio.forEach((b, i) => {
+      b.style.setProperty('--to', x0 + i * (w + gap) + 'px');
+      b.style.setProperty('--in', (trio.length - 1 - i) * 120 + 'ms'); // going out: the furthest first
+      b.style.zIndex = trio.length - i; // Resume on top, the others slide out from under it
+    });
+  }
+  placeTrio();
+  addEventListener('resize', placeTrio);
+  document.getElementById('resume').addEventListener('click', togglePause);
+  // End the game: the first tap asks in place ("End game?"), the second ends it; a tap anywhere else cancels.
+  // (A second tap right after the first, under 0.4 s, is ignored, so a quick double tap never ends a game.)
+  const endBtn = document.getElementById('end'), endShield = document.getElementById('endShield');
+  let askedAt = 0;
+  function askEnd(on) {
+    if (on) endBtn.style.setProperty('--wide', 52 + 8 + endBtn.querySelector('.end-label').scrollWidth + 18 + 'px');
+    endBtn.classList.toggle('wide', on);
+    document.body.classList.toggle('confirm-end', on);
+    endShield.hidden = !on;
+    askedAt = on ? performance.now() : 0;
+  }
+  endBtn.addEventListener('click', () => {
+    if (!endBtn.classList.contains('wide')) return askEnd(true);
+    if (performance.now() - askedAt < 400) return;
+    askEnd(false);
+    newGame();
+  });
+  endShield.addEventListener('click', () => askEnd(false));
+  const adjust = document.getElementById('adjust');
+  document.getElementById('adjustBtn').addEventListener('click', () => {
+    showAdjust();
+    adjust.returnValue = '';
+    adjust.showModal();
+  });
+  function showAdjust() {
+    for (const p of ['black', 'white']) setText(adjust.querySelector(`[data-p=${p}] .adj-time b`), fmt(clock(p).time));
+  }
+  // More or less main time. Never below 1 s, so nobody loses by a correction.
+  function addTime(p, ms) {
+    const now = clock(p).time, next = Math.max(Math.min(now, 1000), now + ms);
+    if (next !== now) left[p] = next + (active === p ? turnTime() : 0);
+  }
+  adjust.addEventListener('click', e => {
+    const b = e.target.closest('button[data-d]');
+    if (!b) return;
+    const p = b.closest('[data-p]').dataset.p;
+    addTime(p, b.dataset.d * 1000);
+    showAdjust();
+    render();
   });
 
   // Changing the time setting, only between games.
@@ -776,14 +1026,28 @@
     else form.requestSubmit(setBtn);
   });
 
-  // Set only closes with a time that works; otherwise the time fields turn pink.
+  // Set only closes with a time that works; otherwise the wrong fields turn pink and a short
+  // message says why. Our own message, not the browser's: that one ignores the app's language.
   const form = dialog.querySelector('form'), setBtn = form.querySelector('[value=set]');
+  const formError = field('formError');
   form.addEventListener('submit', e => {
-    if (e.submitter !== setBtn || valid(readForm())) return;
+    if (e.submitter !== setBtn) return;
+    const outside = numbers().filter(i => !i.checkValidity() || (i.value === '' && +i.min > 0)); // outside min / max, or empty where 0 is not allowed
+    const noTime = !valid(readForm());
+    if (!outside.length && !noTime) return;
     e.preventDefault();
-    for (const id of ['mainMin', 'mainSec', 'incSec']) field(id).classList.add('wrong');
+    const wrong = outside.length ? outside : ['mainMin', 'mainSec', 'incSec'].map(field);
+    for (const i of wrong) i.classList.add('wrong');
+    formError.textContent = outside.length
+      ? t('outOfRange')(outside[0].min, outside[0].max)
+      : t('noTime');
+    formError.hidden = false;
+    fitSettings();
   });
-  const unmark = () => { for (const i of dialog.querySelectorAll('.wrong')) i.classList.remove('wrong'); };
+  const unmark = () => {
+    for (const i of dialog.querySelectorAll('.wrong')) i.classList.remove('wrong');
+    formError.hidden = true;
+  };
   dialog.addEventListener('input', unmark);
 
   // While the phone's keyboard is open, the dialogs fit into the part of the screen above it.
@@ -809,6 +1073,7 @@
     if (need > room) dialog.style.setProperty('--fit', Math.max(.7, 1 - (need - room) / shrinks));
   }
   (vv || window).addEventListener('resize', fitSettings);
+  addEventListener('resize', () => charts && render()); // the chart's bars fit the new width
 
   // The form shows the picked system's values; while switching between systems,
   // each keeps what was typed (draft). Set uses the picked one.
@@ -842,12 +1107,9 @@
   field('again').addEventListener('click', () => fillForm(draft[picked] = { ...DEFAULTS[picked] }));
 
   info.addEventListener('click', () => {
-    // During a game, the middle box pauses and shows or hides the statistics instead.
-    if (state === 'running' || state === 'paused') {
-      showStats = state === 'running' || !showStats;
-      if (state === 'running') togglePause();
-      return render();
-    }
+    // During a game, the middle box pauses instead (the statistics then show); while paused it does nothing.
+    if (state === 'running') return togglePause();
+    if (state === 'paused') return;
     draft = structuredClone(saved);
     picked = null;
     radios.find(r => r.value === settings.system).checked = true;
@@ -924,14 +1186,22 @@
     const row = (key, value, cls = '') => `<span class="${cls}">${t(key)}</span><b class="${cls}">${value}</b>`;
     return row(systemKey(), describe(settings), 'mode') + row('moves', n) + row('timeUsed', dur(used(p)))
       + row('perMove', n ? dur(s.used / n) : '–') + row('longest', dur(Math.max(0, ...s.times)))
-      + row('wholeGame', dur(used('black') + used('white')), 'total')
-      + chartFor(p);
+      + row('wholeGame', dur(used('black') + used('white')), 'total');
+  }
+  // While the statistics show, a tap switches between the numbers and the chart (both halves);
+  // in the chart, a tap on the bars picks a move instead.
+  function flipStats(e) {
+    if (!stats.black.times.length && !stats.white.times.length) return; // no moves yet: no chart to show
+    if (charts && e.target.closest('.chart .bars')) return;
+    charts = !charts;
+    render();
   }
 
   // Time per move: one bar per move, from the first move (left) to the last (right),
   // on the same scale for both players. Tapping or sliding along the bars shows a move's time.
-  // Never more than 100 bars: in longer games, neighbouring moves share a bar (their average).
-  const MAX_BARS = 100;
+  // One bar per move up to 200 moves each; only in longer games do
+  // neighbouring moves share a bar (their average), so it never gets too crowded.
+  const MAX_BARS = 200;
   const moveNo = (p, i) => i + 1; // chess counts moves in pairs: move 1 is White's first and Black's first
   function barsFor(p) {
     const k = Math.ceil(Math.max(stats.black.times.length, stats.white.times.length) / MAX_BARS) || 1;
@@ -946,22 +1216,27 @@
     const bars = barsFor(p), n = bars.length, sel = chosen[p], b = bars[sel];
     if (!n) return '';
     const max = Math.max(1, ...barsFor('black').map(x => x.ms), ...barsFor('white').map(x => x.ms));
-    const rects = bars.map((x, i) => {
-      const h = Math.max(1, x.ms / max * 40);
-      return `<rect x="${i + .15}" y="${40 - h}" width=".7" height="${h}"${i === sel ? ' class="sel"' : ''}/>`;
-    }).join('');
+    const pct = ms => (ms / max * 100).toFixed(2) + '%';
+    const rects = bars.map((x, i) => `<i style="height:${pct(x.ms)}"${i === sel ? ' class="sel"' : ''}></i>`).join('');
+    const times = stats[p].times, avg = times.reduce((a, b) => a + b, 0) / times.length;
+    const line = `<div class="avg" style="bottom:${pct(avg)}"></div>`;
     const readout = !b ? '' : b.from === b.to ? t('moveAt')(moveNo(p, b.from), dur(b.ms))
       : t('movesAt')(moveNo(p, b.from), moveNo(p, b.to), dur(b.ms));
-    const width = `width: min(100%, ${Math.max(n * 10, 40)}px)`;
+    // Bars and gaps are whole screen pixels, so every bar is exactly as thick as the others.
+    // The more bars, the thinner the gaps; a few bars stay at most 18px apart and centred.
+    const px = window.devicePixelRatio || 1, room = Math.floor(Math.min(innerWidth * .86, 420) * px);
+    let gap = Math.round((n > 100 ? .5 : n > 60 ? 1 : n > 30 ? 2 : 3) * px) || 1;
+    let w = Math.min(Math.floor((room - (n - 1) * gap) / n), Math.round(18 * px) - gap);
+    if (w < 1) { gap = 0; w = Math.max(1, Math.floor(room / n)); } // hundreds of bars on a tiny screen
+    const style = `width: ${(n * w + (n - 1) * gap) / px}px; gap: ${gap / px}px; --w: ${w / px}px`;
     return `<div class="chart">`
-      + `<svg class="${b ? 'has-sel' : ''}" style="${width}" viewBox="0 0 ${n} 40"`
-      + ` preserveAspectRatio="none" aria-hidden="true">${rects}</svg>`
+      + `<div class="bars${b ? ' has-sel' : ''}" style="${style}" aria-hidden="true">${rects}${line}</div>`
       + (b ? `<b class="readout">${readout}</b>` : `<small class="readout">${t('chartTitle')}</small>`) + '</div>';
   }
   function pickBar(p, e) {
-    const svg = ui[p].stats.querySelector('svg');
-    if (!svg) return;
-    const r = svg.getBoundingClientRect(), n = barsFor(p).length;
+    const el = ui[p].stats.querySelector('.bars');
+    if (!el) return;
+    const r = el.getBoundingClientRect(), n = barsFor(p).length;
     let f = (e.clientX - r.left) / r.width;
     if (p === 'white') f = 1 - f; // White's half is turned around
     const i = Math.floor(f * n);
@@ -974,17 +1249,22 @@
     if (el.textContent !== text) el.textContent = text;
   }
   function hintFor(p) {
-    if (state === 'ready') return p === 'black' ? t('startHint') : '';
-    if (state === 'paused') return showStats ? '' : t('paused'); // room for the statistics
+    if (state === 'ready') return ''; // the play button starts the game
+    if (state === 'paused') return active === p ? t('paused') : ''; // only on the side whose clock was running
     if (state === 'over') return p === loser ? t('lost') : t('won');
     return active === p && !moved[p] ? t('yourMove') : ''; // only until each player has moved once
   }
 
   function render() {
     const inGame = state === 'running' || state === 'paused';
-    const withStats = state === 'over' || (state === 'paused' && showStats);
-    if (withStats && !document.body.classList.contains('with-stats')) chosen = { black: null, white: null }; // no move picked yet
+    const withStats = state === 'over' || state === 'paused';
+    if (withStats && !document.body.classList.contains('with-stats')) {
+      chosen = { black: null, white: null }; // no move picked yet,
+      charts = false;                        // and the numbers first
+    }
+    document.body.classList.toggle('ready', state === 'ready');
     document.body.classList.toggle('over', state === 'over');
+    document.body.classList.toggle('paused', state === 'paused');
     document.body.classList.toggle('with-stats', withStats);
     // Both halves the same size while the statistics show, so they fit.
     for (const p of ['black', 'white']) document.body.classList.toggle('turn-' + p, inGame && active === p && !withStats);
@@ -993,7 +1273,11 @@
       const c = clock(p), ms = state === 'over' && loser === p ? 0 : c.time, cl = ui[p].root.classList;
       setText(ui[p].time, fmt(ms));
       setText(ui[p].hint, hintFor(p));
-      const html = withStats ? statsFor(p) : '';
+      const chart = withStats && charts && stats[p].times.length > 0; // a player without moves keeps the numbers
+      const html = !withStats ? '' : chart ? chartFor(p) : statsFor(p);
+      ui[p].stats.classList.toggle('chart-only', chart);
+      cl.toggle('with-chart', chart); // no heart over the chart
+      if (chart) picker.hidden = true;
       if (ui[p].stats.innerHTML !== html) ui[p].stats.innerHTML = html;
       cl.toggle('running', state === 'running' && active === p);
       cl.toggle('waiting', inGame && active !== p);
@@ -1001,15 +1285,19 @@
       cl.toggle('critical', inGame && ms < CRITICAL);
       cl.toggle('flagged', state === 'over' && loser === p);
     }
-    pauseBtn.disabled = !inGame;
-    pauseBtn.classList.toggle('paused', state === 'paused');
-    pauseBtn.ariaLabel = pauseBtn.title = state === 'paused' ? t('resume') : t('pause');
-    resetBtn.ariaLabel = resetBtn.title = t('reset');
+    if (!stillMotion) state === 'paused' ? prideDefs.pauseAnimations() : prideDefs.unpauseAnimations();
+    pauseBtn.classList.toggle('paused', state === 'ready' || state === 'over'); // shows the play icon (in the pause it hides under Resume, still showing pause, so it can fade into it)
+    pauseBtn.ariaLabel = pauseBtn.title = state === 'ready' ? t('begin') : state === 'over' ? t('newGame') : t('pause');
+    const labels = { resume: 'resume', end: 'endGame', adjustBtn: 'adjustTitle' };
+    for (const id in labels) field(id).ariaLabel = field(id).title = t(labels[id]);
+    for (const b of trio) b.style.left = state === 'paused' ? b.style.getPropertyValue('--to') : '';
+    if (state !== 'paused' && endBtn.classList.contains('wide')) askEnd(false); // the question goes when the pause does
     for (const h of hearts) h.ariaLabel = h.title = t('colours');
-    if (state !== 'running') picker.hidden = true; // only while a clock runs, like the heart
-    info.classList.toggle('plain', inGame); // no pencil: during a game it shows the statistics
+    if (state === 'over') picker.hidden = true; // only while the hearts show
+    info.classList.toggle('plain', inGame); // during a game it shows the statistics instead
     setText(setting, describe(settings));
     setText(system, t(systemKey()));
+    paintStatusBar();
   }
   function systemKey() { return settings.system === 'simple' ? 'simpleShort' : settings.system + 'Time'; } // Increment or Timer
 
@@ -1030,6 +1318,11 @@
   newGame();
   setLang(lang);
   loop();
+
+  // Keep a copy on the phone, so the app opens offline too (see sw.js).
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    navigator.serviceWorker.register('sw.js').catch(() => { /* no offline copy, still works online */ });
+  }
 </script>
 </body>
 </html>
